@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/webflow 
+  http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <var name="order" class="com.springinaction.pizza.domain.Order"/>
+    
+    <!-- A sample view state -->
+    <view-state id="welcome">
+        <transition on="phoneEntered" to="lookupCustomer"/>
+        <transition on="cancel" to="end-state"/>
+    </view-state>
+    
+    <action-state id="lookupCustomer">
+        <evaluate result="order.customer"
+            result-type="com.springinaction.pizza.domain.Customer"
+            expression="pizzaFlowActions.lookupCustomer(requestParameters.phoneNumber)" />
+        <transition to="registrationForm" 
+            on-exception="com.springinaction.pizza.service.CustomerNotFoundException" />
+        <transition to="showOrder" />
+    </action-state>
+    
+    <view-state id="showOrder">
+        <transition on="cancel" to="end-state"/>
+    </view-state>
+
+    <view-state id="registrationForm" model="order" popup="true">
+        <transition on="submit" to="addCustomer" />
+        <transition on="cancel" to="end-state" />
+    </view-state>
+    
+    <action-state id="addCustomer">
+        <evaluate expression="pizzaFlowActions.addCustomer(order.customer)" />
+        <transition to="showOrder" />
+    </action-state>
+    
+    <!-- A sample end state -->
+    <end-state id="end-state" view="end-state"/>
+</flow>
