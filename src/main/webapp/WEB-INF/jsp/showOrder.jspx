@@ -28,10 +28,18 @@
 <c:forEach items="${order.pizzas}" var="pizza">
 <li>${pizza.size} : 
   <c:forEach items="${pizza.toppings}" var="topping">
-      ${topping}, 
+    <c:out value="${topping}" />,
   </c:forEach>
 </li>
 </c:forEach>
+    <form:form>
+      <input type="hidden" name="_flowExecutionKey" 
+             value="${flowExecutionKey}"/>
+      <input type="submit" name="_eventId_createPizza" 
+             value="Create Pizza" />
+      <input type="submit" name="_eventId_checkout" 
+             value="Checkout" />
+    </form:form>
 
 	</body>
 </html>

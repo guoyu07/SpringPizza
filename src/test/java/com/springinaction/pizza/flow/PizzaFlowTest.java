@@ -2,6 +2,8 @@ package com.springinaction.pizza.flow;
 
 import static org.mockito.Mockito.*;
 
+import java.util.List;
+
 import org.springframework.webflow.config.FlowDefinitionResource;
 import org.springframework.webflow.config.FlowDefinitionResourceFactory;
 import org.springframework.webflow.test.MockExternalContext;
@@ -10,6 +12,7 @@ import org.springframework.webflow.test.execution.AbstractXmlFlowExecutionTests;
 
 import com.springinaction.pizza.domain.Customer;
 import com.springinaction.pizza.domain.Order;
+import com.springinaction.pizza.domain.Pizza;
 import com.springinaction.pizza.service.CustomerNotFoundException;
 
 public class PizzaFlowTest extends AbstractXmlFlowExecutionTests {
@@ -66,4 +69,46 @@ public class PizzaFlowTest extends AbstractXmlFlowExecutionTests {
     resumeFlow(context);
     assertCurrentStateEquals("registrationForm");
   }
+  
+  public void testShouldTransitionFromShowOrderToCreatePizza(){
+    startFlow(new MockExternalContext());
+    
+    MockExternalContext context = new MockExternalContext();
+    context.setEventId("createPizza");
+      
+    setCurrentState("showOrder");
+    resumeFlow(context);
+    assertCurrentStateEquals("createPizza");
+    assertNotNull(getFlowAttribute("pizza"));
+  }
+  
+  public void testShouldAddPizzaOnAddPizzaEvent(){
+    startFlow(new MockExternalContext());
+    setCurrentState("createPizza");
+    getFlowScope().put("pizza", new Pizza());
+    MockExternalContext context = new MockExternalContext();
+    context.putRequestParameter("toppings", "TOMATO");
+    context.setEventId("addPizza");
+    resumeFlow(context);
+    
+    assertCurrentStateEquals("showOrder");
+    Order order = (Order) getFlowAttribute("order");
+    List<Pizza> pizzas = order.getPizzas();
+    assertEquals(1, pizzas.size());
+//    assertEquals(1, pizzas.get(0).getToppings().size());
+  }
+  
+  public void testShouldNotAddPizzaOnCancelEvent() {
+    startFlow(new MockExternalContext());
+    setCurrentState("createPizza");
+    MockExternalContext context = new MockExternalContext();
+    context.setEventId("cancel");
+    resumeFlow(context);
+    
+    assertCurrentStateEquals("showOrder");
+    Order order = (Order) getFlowAttribute("order");
+    assertEquals(0, order.getPizzas().size());
+  } 
+  
+  
 }

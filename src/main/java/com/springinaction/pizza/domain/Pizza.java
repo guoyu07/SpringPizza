@@ -30,6 +30,7 @@ public class Pizza implements Serializable {
   }
 
   public void setToppings(List<Topping> toppings) {
+    System.out.println("TOPPINGS:  " + toppings);
     this.toppings = toppings;
   }
   

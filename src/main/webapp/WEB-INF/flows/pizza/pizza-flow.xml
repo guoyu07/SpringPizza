@@ -6,10 +6,10 @@
 
     <var name="order" class="com.springinaction.pizza.domain.Order"/>
     
-    <!-- A sample view state -->
+    <!-- Customer -->
     <view-state id="welcome">
         <transition on="phoneEntered" to="lookupCustomer"/>
-        <transition on="cancel" to="end-state"/>
+        <transition on="cancel" to="endState"/>
     </view-state>
     
     <action-state id="lookupCustomer">
@@ -21,13 +21,9 @@
         <transition to="showOrder" />
     </action-state>
     
-    <view-state id="showOrder">
-        <transition on="cancel" to="end-state"/>
-    </view-state>
-
     <view-state id="registrationForm" model="order" popup="true">
         <transition on="submit" to="addCustomer" />
-        <transition on="cancel" to="end-state" />
+        <transition on="cancel" to="endState" />
     </view-state>
     
     <action-state id="addCustomer">
@@ -35,6 +31,36 @@
         <transition to="showOrder" />
     </action-state>
     
-    <!-- A sample end state -->
-    <end-state id="end-state" view="end-state"/>
+    <!-- Order -->
+    <view-state id="showOrder">
+        <transition on="createPizza" to="createPizza" />
+        <transition on="checkout" to="takePayment" />
+        <transition on="cancel" to="endState" />
+    </view-state>
+
+    <view-state id="createPizza" model="flowScope.pizza">
+        <on-entry>
+          <set name="flowScope.pizza" 
+              value="new com.springinaction.pizza.domain.Pizza()" />
+              
+          <evaluate result="viewScope.toppingsList" 
+              expression="@com.springinaction.pizza.domain.Topping@asList()" />
+        </on-entry>
+        <transition on="addPizza" to="showOrder">
+          <evaluate expression="order.addPizza(flowScope.pizza)" />
+        </transition>
+        <transition on="cancel" to="showOrder" />
+    </view-state>
+        
+    <!-- Payment -->
+    <view-state id="takePayment">
+        <transition on="paymentSubmitted" to="verifyPayment" />
+    </view-state>
+    
+    <action-state id="verifyPayment">
+        <transition to="endState" />
+    </action-state>
+        
+    <!-- End state -->
+    <end-state id="endState" />
 </flow>
