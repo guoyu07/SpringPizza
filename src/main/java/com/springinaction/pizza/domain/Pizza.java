@@ -11,6 +11,7 @@ public class Pizza implements Serializable {
   
   public Pizza() {
     toppings = new ArrayList<Topping>();
+    size = PizzaSize.LARGE;
   }
 
   public PizzaSize getSize() {
@@ -30,7 +31,6 @@ public class Pizza implements Serializable {
   }
 
   public void setToppings(List<Topping> toppings) {
-    System.out.println("TOPPINGS:  " + toppings);
     this.toppings = toppings;
   }
   

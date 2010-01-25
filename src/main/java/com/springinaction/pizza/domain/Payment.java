@@ -1,6 +1,10 @@
 package com.springinaction.pizza.domain;
 
-public abstract class Payment {
+import java.io.Serializable;
+
+public abstract class Payment implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   private float amount;
   public void setAmount(float amount) {
     this.amount = amount;

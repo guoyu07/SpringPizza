@@ -6,18 +6,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Configurable;
 
-import com.springinaction.pizza.service.PricingEngine;
-
-/**
- * Defines a pizza order for use in the Spring Pizza Spring WebFlow example.
- * 
- * Shown in listing 15.1
- * 
- * @author wallsc
- */
-@SuppressWarnings("serial")
 @Configurable("order")
 public class Order implements Serializable {
+   private static final long serialVersionUID = 1L;
    private Customer customer;
    private List<Pizza> pizzas;
    private Payment payment;
@@ -59,9 +50,9 @@ public class Order implements Serializable {
       this.payment = payment;
    }
 
-   // injected
-   private PricingEngine pricingEngine;
-   public void setPricingEngine(PricingEngine pricingEngine) {
-      this.pricingEngine = pricingEngine;
-   }
+//   // injected
+//   private PricingEngine pricingEngine;
+//   public void setPricingEngine(PricingEngine pricingEngine) {
+//      this.pricingEngine = pricingEngine;
+//   }
 }
