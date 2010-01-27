@@ -9,7 +9,7 @@
   <head><title>Spring Pizza</title></head>
 
   <body>
-	<h2>Welcome to Spring Pizza!!!</h2>
+    <h2>Welcome to Spring Pizza!!!</h2>
 	
 		<form:form>
       <input type="hidden" name="_flowExecutionKey" 

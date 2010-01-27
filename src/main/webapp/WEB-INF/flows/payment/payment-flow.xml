@@ -19,8 +19,8 @@
     </view-state>
 
     <action-state id="verifyPayment">
-        <evaluate result="order.payment" 
-            expression="pizzaFlowActions.verifyPayment(flowScope.paymentDetails)" />
+        <evaluate result="order.payment" expression=
+            "pizzaFlowActions.verifyPayment(flowScope.paymentDetails)" />
         <transition to="paymentTaken" />
     </action-state>
             

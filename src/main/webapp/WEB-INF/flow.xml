@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+ xmlns:flow="http://www.springframework.org/schema/webflow-config"
  xmlns:p="http://www.springframework.org/schema/p"
  xmlns:context="http://www.springframework.org/schema/context"
  xsi:schemaLocation="http://www.springframework.org/schema/webflow-config 
@@ -14,16 +14,16 @@
   <context:component-scan base-package="com.springinaction.pizza.flow" />
 
   <!-- Executes flows: the entry point into the Spring Web Flow system -->
-  <webflow:flow-executor id="flowExecutor" />
+  <flow:flow-executor id="flowExecutor" />
 
   <!-- The registry of executable flow definitions -->
-  <webflow:flow-registry id="flowRegistry" 
+  <flow:flow-registry id="flowRegistry" 
            flow-builder-services="flowBuilderServices"
            base-path="/WEB-INF/flows">
-     <webflow:flow-location-pattern value="/**/*-flow.xml" />
-  </webflow:flow-registry>
+     <flow:flow-location-pattern value="/**/*-flow.xml" />
+  </flow:flow-registry>
 
-  <webflow:flow-builder-services id="flowBuilderServices" 
+  <flow:flow-builder-services id="flowBuilderServices" 
            view-factory-creator="mvcViewFactoryCreator"/>
 
   <bean id="mvcViewFactoryCreator" class=
