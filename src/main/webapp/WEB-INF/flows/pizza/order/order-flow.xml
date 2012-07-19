@@ -19,7 +19,7 @@
               value="new com.springinaction.pizza.domain.Pizza()" />
               
           <evaluate result="viewScope.toppingsList" 
-              expression="@com.springinaction.pizza.domain.Topping@asList()" />
+              expression="T(com.springinaction.pizza.domain.Topping).asList()" />
         </on-entry>
         <transition on="addPizza" to="showOrder">
           <evaluate expression="order.addPizza(flowScope.pizza)" />

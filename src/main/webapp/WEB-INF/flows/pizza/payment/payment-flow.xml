@@ -12,7 +12,7 @@
               value="new com.springinaction.pizza.domain.PaymentDetails()" />
 
           <evaluate result="viewScope.paymentTypeList" 
-              expression="@com.springinaction.pizza.domain.PaymentType@asList()" />
+              expression="T(com.springinaction.pizza.domain.PaymentType).asList()" />
         </on-entry>
         <transition on="paymentSubmitted" to="verifyPayment" />
         <transition on="cancel" to="cancel" />

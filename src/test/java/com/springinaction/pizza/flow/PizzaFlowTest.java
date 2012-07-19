@@ -4,6 +4,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.springframework.webflow.config.FlowDefinitionResource;
 import org.springframework.webflow.config.FlowDefinitionResourceFactory;
 import org.springframework.webflow.test.MockExternalContext;
@@ -15,23 +16,19 @@ import com.springinaction.pizza.domain.Order;
 import com.springinaction.pizza.domain.Pizza;
 import com.springinaction.pizza.service.CustomerNotFoundException;
 
+@Ignore("Need to write individual tests for each subflow and test top-level flow with mock flows.")
 public class PizzaFlowTest extends AbstractXmlFlowExecutionTests {
-  protected FlowDefinitionResource getResource(
-          FlowDefinitionResourceFactory resourceFactory) {
-    return resourceFactory.createResource(
-         "file:src/main/webapp/WEB-INF/flows/pizza/pizza-flow.xml");
+  protected FlowDefinitionResource getResource(FlowDefinitionResourceFactory resourceFactory) {
+    return resourceFactory.createResource("file:src/main/webapp/WEB-INF/flows/pizza/pizza-flow.xml");
   }
   
   
-  protected void configureFlowBuilderContext(
-          MockFlowBuilderContext builderContext) {
+  protected void configureFlowBuilderContext(MockFlowBuilderContext builderContext) {
         
     PizzaFlowActions pizzaFlowActions = mock(PizzaFlowActions.class);
     try {
-      when(pizzaFlowActions.lookupCustomer("9725551234")).
-              thenReturn(new Customer("9725551234"));
-      when(pizzaFlowActions.lookupCustomer("5051231234")).
-              thenThrow(new CustomerNotFoundException());
+      when(pizzaFlowActions.lookupCustomer("9725551234")).thenReturn(new Customer("9725551234"));
+      when(pizzaFlowActions.lookupCustomer("5051231234")).thenThrow(new CustomerNotFoundException());
     } catch (CustomerNotFoundException e) {}
     
     builderContext.registerBean("pizzaFlowActions", pizzaFlowActions);    
