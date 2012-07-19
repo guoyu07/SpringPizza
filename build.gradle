@@ -28,3 +28,7 @@ dependencies {
         [group: 'org.mockito', name: 'mockito-all', version: '1.8.0']
     )
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.0'
+}
