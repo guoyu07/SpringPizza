@@ -1,8 +1,5 @@
-<div xmlns:form="http://www.springframework.org/tags/form"
-     xmlns:jsp="http://java.sun.com/JSP/Page">
-
-  <jsp:output omit-xml-declaration="yes"/>  
-  <jsp:directive.page contentType="text/html;charset=UTF-8" />  
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<div>
 
 	<h2>Create Pizza</h2>
 	<form:form commandName="pizza">
@@ -18,7 +15,7 @@
 	  
 	  <b>Toppings: </b><br/>
 	  <form:checkboxes path="toppings" items="${toppingsList}" 
-	                   delimiter="&lt;br/&gt;"/><br/><br/>
+	                   delimiter="<br/>"/><br/><br/>
 
 	      
 	  <input type="submit" class="button" 

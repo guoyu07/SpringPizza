@@ -1,11 +1,6 @@
-<html xmlns:c="http://java.sun.com/jsp/jstl/core"
-     xmlns:jsp="http://java.sun.com/JSP/Page"
-     xmlns:spring="http://www.springframework.org/tags"
-     xmlns:form="http://www.springframework.org/tags/form">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<html>
 
-  <jsp:output omit-xml-declaration="yes"/>  
-  <jsp:directive.page contentType="text/html;charset=UTF-8" />  
-  
   <head><title>Spring Pizza</title></head>
 
   <body>
@@ -26,8 +21,6 @@
 </form:form>
 
 		
-		<![CDATA[
     <a href='${flowExecutionUrl}&_eventId=finished'>Finish</a>
-    ]]>
 	</body>
 </html>

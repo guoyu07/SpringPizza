@@ -1,13 +1,8 @@
-<html xmlns:c="http://java.sun.com/jsp/jstl/core"
-     xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-     xmlns:jsp="http://java.sun.com/JSP/Page"
-     xmlns:spring="http://www.springframework.org/tags"
-     xmlns:form="http://www.springframework.org/tags/form"
-     xmlns:fmt="http://java.sun.com/jstl/format">
-
-  <jsp:output omit-xml-declaration="yes"/>  
-  <jsp:directive.page contentType="text/html;charset=UTF-8" />  
-  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<html>
   <head><title>Spring Pizza</title></head>
   <body>
     <h2>Your order</h2>

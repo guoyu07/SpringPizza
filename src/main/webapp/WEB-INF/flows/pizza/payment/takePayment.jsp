@@ -1,5 +1,5 @@
-<div xmlns:form="http://www.springframework.org/tags/form"
-     xmlns:jsp="http://java.sun.com/JSP/Page">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<div>
 
   <script>
     function showCreditCardField() {
@@ -12,9 +12,6 @@
       ccNumberStyle.visibility = 'hidden';
     }    
   </script>
-
-  <jsp:output omit-xml-declaration="yes"/>  
-  <jsp:directive.page contentType="text/html;charset=UTF-8" />  
 
 	<h2>Take Payment</h2>
 	<form:form commandName="paymentDetails" name="paymentForm">

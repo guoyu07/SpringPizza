@@ -28,7 +28,7 @@
 
   <bean id="mvcViewFactoryCreator" class=
       "org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
-     <property name="defaultViewSuffix" value=".jspx" />   
+     <property name="defaultViewSuffix" value=".jsp" />   
   </bean>
 
   <!--Maps request paths to flows in the flowRegistry-->
